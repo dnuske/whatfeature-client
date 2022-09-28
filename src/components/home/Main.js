@@ -13,7 +13,7 @@ const Main = () => {
         <Grid.Col sx={12} sm={6} lg={4} key={index} className={classes.gridCol}>
           <FeatureCard
             key={index}
-            index={item.id}
+            id={item.id}
             image={item.image}
             title={item.title}
             description={item.description}

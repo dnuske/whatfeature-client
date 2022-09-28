@@ -6,36 +6,35 @@ export function UpIconButton({ id, vote, upVote }) {
   const { classes } = useStyles();
   const appState = AppState.useContainer();
 
-  // const handleChangeVote = () => {
-  //   appState.data.filter((item) => item.id === id)[0].vote = true;
-  //   appState.data.filter((item) => item.id === id)[0].upVote = true;
+  // Create a function called handleChangeVote that iterate appState.data and change the vote and upVote value of the item with the id passed in props
+  const handleChangeVote = () => {
+    // remplace the item in the array
+    const newData = appState.data.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          vote: true,
+          upVote: true,
+        };
+      }
+      return item;
+    });
 
-  //   // remplace the item in the array
-  //   const newData = appState.data.map((item) => {
-  //     if (item.id === id) {
-  //       return {
-  //         ...item,
-  //         vote: true,
-  //         upVote: true,
-  //       };
-  //     }
-  //     return item;
-  //   });
-
-  //   // update the state
-  //   appState.setData(newData);
-  // };
+    // update the state
+    appState.setData(newData);
+  };
 
   return (
     <ActionIcon
-      variant="default"
+      variant="transparent"
       radius="md"
       sx={vote && upVote && { backgroundColor: '#2D8632' }}
       size={35}
       style={{
         width: 40,
+        border: '1px solid #CED4DA',
       }}
-      // onClick={handleChangeVote}
+      onClick={handleChangeVote}
     >
       <ArrowBigTop
         size={35}

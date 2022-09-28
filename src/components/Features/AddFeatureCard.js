@@ -1,8 +1,8 @@
 import { Card, createStyles, Text } from '@mantine/core';
 import React, { useState } from 'react';
 import { CirclePlus } from 'tabler-icons-react';
+import AddFeatureModal from './AddFeatureModal';
 import RecommendFeatureModal from './RecommendFeatureModal';
-import AddFeatureModal from './RecommendFeatureModal';
 
 export function AddFeatureCard() {
   const { classes } = useStyles();
@@ -12,7 +12,7 @@ export function AddFeatureCard() {
   const [openedRecommend, setOpenedRecommend] = useState(false);
 
   // ONLY FOR TEST, REMOVE THIS LATER
-  const [isAdmin, setisAdmin] = useState(false);
+  const [isAdmin, setisAdmin] = useState(true);
 
   const handleAddFeature = () => {
     setOpenedCreate(true);
@@ -29,7 +29,7 @@ export function AddFeatureCard() {
         radius="md"
         p="md"
         className={classes.card}
-        onClick={isAdmin ? handleAddFeature : handleRecommendFeature}
+        onClick={isAdmin === true ? handleAddFeature : handleRecommendFeature}
       >
         <Card.Section className={classes.section}>
           <div className={classes.sectionContent}>

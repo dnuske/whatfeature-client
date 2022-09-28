@@ -10,9 +10,11 @@ import {
 } from '@mantine/core';
 import { ArrowBigRight } from 'tabler-icons-react';
 import { useForm } from '@mantine/form';
+import AppState from '../../services/states';
 
 export default function AddFeatureModal({ opened, setOpened }) {
   const { classes } = useStyles();
+  const appState = AppState.useContainer();
 
   const form = useForm({
     initialValues: {
@@ -37,7 +39,19 @@ export default function AddFeatureModal({ opened, setOpened }) {
   });
 
   const handleSubmit = (values) => {
-    console.log(values);
+    //Add new feature on appState.data
+
+    const newArray = [
+      ...appState.data,
+      {
+        id: appState.data.length + 1,
+        image:
+          'http://stratnor.com/wp-content/themes/stratnor/images/no-image.png',
+        titñe: values.title,
+        description: values.description,
+      },
+    ];
+    appState.setData(newArray);
     setOpened(false);
   };
   return (
