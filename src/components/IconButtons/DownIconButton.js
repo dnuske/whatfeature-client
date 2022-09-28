@@ -2,8 +2,8 @@ import { ActionIcon, createStyles } from '@mantine/core';
 import { ArrowBigDown } from 'tabler-icons-react';
 
 export function DownIconButton({ vote, upVote }) {
-  console.log(vote, upVote);
   const { classes } = useStyles();
+
   return (
     <ActionIcon
       variant="default"

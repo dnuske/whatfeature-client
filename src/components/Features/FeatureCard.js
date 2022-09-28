@@ -4,7 +4,7 @@ import { ActionIconButton } from '../IconButtons/ActionIconButton';
 import { DownIconButton } from '../IconButtons/DownIconButton';
 import { UpIconButton } from '../IconButtons/UpIconButton';
 
-export function FeatureCard({ image, title, description, vote, upVote }) {
+export function FeatureCard({ id, image, title, description, vote, upVote }) {
   const { classes } = useStyles();
 
   return (
@@ -47,8 +47,8 @@ export function FeatureCard({ image, title, description, vote, upVote }) {
           ) : (
             // If user is Pusher
             <>
-              <UpIconButton vote={vote} upVote={upVote} />
-              <DownIconButton vote={vote} upVote={upVote} />
+              <UpIconButton id={id} vote={vote} upVote={upVote} />
+              <DownIconButton id={id} vote={vote} upVote={upVote} />
             </>
           )}
         </Group>

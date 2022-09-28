@@ -6,7 +6,6 @@ export function ActionIconButton({ children }) {
       variant="default"
       radius="md"
       size={35}
-      sx={{ backgroundColor: '2D8632' }}
       style={{
         width: 40,
       }}

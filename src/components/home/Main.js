@@ -1,15 +1,19 @@
 import { Grid, createStyles } from '@mantine/core';
+import AppState from '../../services/states';
 import { AddFeatureCard } from '../Features/AddFeatureCard';
 import { FeatureCard } from '../Features/FeatureCard';
 
 const Main = () => {
   const { classes } = useStyles();
+  const appState = AppState.useContainer();
+
   return (
     <Grid>
-      {data.map((item, index) => (
+      {appState.data.map((item, index) => (
         <Grid.Col sx={12} sm={6} lg={4} key={index} className={classes.gridCol}>
           <FeatureCard
             key={index}
+            index={item.id}
             image={item.image}
             title={item.title}
             description={item.description}
@@ -33,42 +37,5 @@ const useStyles = createStyles(() => ({
     alignItems: 'center',
   },
 }));
-
-const data = [
-  {
-    image:
-      'https://elcomercio.pe/resizer/KiDlhvA-I_SxBwbOLevRM2dDy9s=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/YUGZJTJH7JGGXGCVMVNO42SKMU.jpg',
-    title: 'Calendario de Crons',
-    description:
-      'El objetivo es implementar un Calendario de Cronohooks, una implementación propia que permita visualizar tu propio cronograma sin complicaciones, pero con un feature para implementar en entornos reales...',
-    vote: true,
-    upVote: true,
-  },
-  {
-    image:
-      'https://elcomercio.pe/resizer/KiDlhvA-I_SxBwbOLevRM2dDy9s=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/YUGZJTJH7JGGXGCVMVNO42SKMU.jpg',
-    title: 'Calendario de Crons',
-    description:
-      'El objetivo es implementar un Calendario de Cronohooks, una implementación propia que permita visualizar tu propio cronograma sin complicaciones, pero con un feature para implementar en entornos reales...',
-    vote: true,
-    upVote: true,
-  },
-  {
-    image:
-      'https://elcomercio.pe/resizer/KiDlhvA-I_SxBwbOLevRM2dDy9s=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/YUGZJTJH7JGGXGCVMVNO42SKMU.jpg',
-    title: 'Calendario de Crons',
-    description:
-      'El objetivo es implementar un Calendario de Cronohooks, una implementación propia que permita visualizar tu propio cronograma sin complicaciones, pero con un feature para implementar en entornos reales...',
-    vote: true,
-    upVote: false,
-  },
-  {
-    image:
-      'https://elcomercio.pe/resizer/KiDlhvA-I_SxBwbOLevRM2dDy9s=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/YUGZJTJH7JGGXGCVMVNO42SKMU.jpg',
-    title: 'Calendario de Crons',
-    description:
-      'El objetivo es implementar un Calendario de Cronohooks, una implementación propia que permita visualizar tu propio cronograma sin complicaciones, pero con un feature para implementar en entornos reales...',
-  },
-];
 
 export default Main;
