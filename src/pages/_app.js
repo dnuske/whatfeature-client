@@ -1,10 +1,17 @@
-import { Container, MantineProvider, Global, Center } from '@mantine/core';
+import {
+  Container,
+  MantineProvider,
+  Global,
+  Center,
+  Footer,
+} from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { NotificationsProvider } from '@mantine/notifications';
 import NonSSRWrapper from '../components/architecture/NonSSRWrapper';
 import Nav from '../components/nav/Nav';
+import { FooterSocial } from '../components/footer/Footer';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -51,6 +58,7 @@ function MyApp({ Component, pageProps }) {
               <Container size="xl">
                 <Nav />
                 <Component {...pageProps} />
+                <FooterSocial />
               </Container>
             </NotificationsProvider>
           </ModalsProvider>

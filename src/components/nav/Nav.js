@@ -31,11 +31,6 @@ export default function Nav() {
 
   const userActions = [
     {
-      icon: UserCircle,
-      title: 'View your profile',
-      onClick: () => alert('View your profile'),
-    },
-    {
       icon: FingerprintOff,
       title: 'Log out',
       onClick: () => {
