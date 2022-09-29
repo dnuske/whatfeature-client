@@ -7,16 +7,14 @@ import {
   createStyles,
   Badge,
 } from '@mantine/core';
-import { useState } from 'react';
+import Link from 'next/link';
 import { Edit, Trash, BookUpload } from 'tabler-icons-react';
 import { ActionIconButton } from '../IconButtons/ActionIconButton';
 import { DownIconButton } from '../IconButtons/DownIconButton';
 import { UpIconButton } from '../IconButtons/UpIconButton';
-import { ShowFeature } from './ShowFeature';
 
 export function FeatureCard({ feature }) {
   const { classes } = useStyles();
-  const [openShowFeatureModal, setOpenShowFeatureModal] = useState(false);
 
   const badgeStatus = (status) => {
     switch (status) {
@@ -35,121 +33,117 @@ export function FeatureCard({ feature }) {
 
   return (
     <>
-      <Card withBorder radius="md" p="md" className={classes.card}>
-        {!!feature.image && (
-          <Card.Section>
-            <Image src={feature.image} alt={feature.title} height={150} />
-          </Card.Section>
-        )}
+      <Link href={`/${feature.id}`}>
+        <Card withBorder radius="md" p="md" className={classes.card}>
+          {!!feature.image && (
+            <Card.Section>
+              <Image src={feature.image} alt={feature.title} height={150} />
+            </Card.Section>
+          )}
 
-        <Card.Section
-          mt="md"
-          className={classes.section}
-          style={{
-            height: !!feature.image ? '140px' : '307px',
-            paddingTop: !!feature.image ? '' : '10px',
-          }}
-        >
-          <Group position="apart">
-            <Text size="lg" weight={500}>
-              {feature.title}
+          <Card.Section
+            mt="md"
+            className={classes.section}
+            style={{
+              height: !!feature.image ? '140px' : '307px',
+              paddingTop: !!feature.image ? '' : '10px',
+            }}
+          >
+            <Group position="apart">
+              <Text size="lg" weight={500}>
+                {feature.title}
+              </Text>
+              {badgeStatus(feature.status)}
+            </Group>
+            <Text size="sm" mt="xs">
+              {feature.description.substring(0, 170) + '...'}
             </Text>
-            {badgeStatus(feature.status)}
-          </Group>
-          <Text size="sm" mt="xs">
-            {feature.description.substring(0, 170) + '...'}
-          </Text>
-        </Card.Section>
+          </Card.Section>
 
-        <Group mt="xs">
-          {true ? (
-            // If user is Founder
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                width: '100%',
-              }}
-            >
-              {feature.vote && (
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Badge
-                    color="teal"
-                    style={{
-                      marginTop: '-1px',
-                      marginBottom: '1px',
-                    }}
-                  >
-                    VOTE UP: 100
-                  </Badge>
-                  <Badge color="red">VOTE DOWN: 41</Badge>
-                </div>
-              )}
+          <Group mt="xs">
+            {true ? (
+              // If user is Founder
               <div
                 style={{
-                  width: '100%',
                   display: 'flex',
                   justifyContent: 'space-around',
+                  width: '100%',
                 }}
               >
-                <ActionIconButton
-                  color={'#228BE6'}
-                  onClick={() => setOpenShowFeatureModal(true)}
+                {feature.vote && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                    }}
+                  >
+                    <Badge
+                      color="teal"
+                      style={{
+                        marginTop: '-1px',
+                        marginBottom: '1px',
+                      }}
+                    >
+                      VOTE UP: 100
+                    </Badge>
+                    <Badge color="red">VOTE DOWN: 41</Badge>
+                  </div>
+                )}
+                <div
+                  style={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                  }}
                 >
-                  <BookUpload
-                    size={35}
-                    strokeWidth={1.5}
-                    className={classes.icons}
-                    color="white"
-                  />
-                </ActionIconButton>
-                <ActionIconButton>
-                  <Edit size={35} strokeWidth={1.5} className={classes.icons} />
-                </ActionIconButton>
-                <ActionIconButton>
-                  <Trash
-                    size={35}
-                    strokeWidth={1.5}
-                    color={'#FF4747'}
-                    className={classes.icons}
-                  />
-                </ActionIconButton>
+                  <Link href={`/${feature.id}`}>
+                    <ActionIconButton color={'#228BE6'}>
+                      <BookUpload
+                        size={35}
+                        strokeWidth={1.5}
+                        className={classes.icons}
+                        color="white"
+                      />
+                    </ActionIconButton>
+                  </Link>
+                  <ActionIconButton>
+                    <Edit
+                      size={35}
+                      strokeWidth={1.5}
+                      className={classes.icons}
+                    />
+                  </ActionIconButton>
+                  <ActionIconButton>
+                    <Trash
+                      size={35}
+                      strokeWidth={1.5}
+                      color={'#FF4747'}
+                      className={classes.icons}
+                    />
+                  </ActionIconButton>
+                </div>
               </div>
-            </div>
-          ) : (
-            // If user is Pusher
-            <>
-              <Button
-                radius="md"
-                className={classes.iconButton}
-                onClick={() => setOpenShowFeatureModal(true)}
-              >
-                Join discussion
-              </Button>
-              <UpIconButton
-                id={feature.id}
-                vote={feature.vote}
-                upVote={feature.upVote}
-              />
-              <DownIconButton
-                id={feature.id}
-                vote={feature.vote}
-                upVote={feature.upVote}
-              />
-            </>
-          )}
-        </Group>
-      </Card>
-      <ShowFeature
-        open={openShowFeatureModal}
-        setOpen={setOpenShowFeatureModal}
-        feature={feature}
-      />
+            ) : (
+              // If user is Pusher
+              <>
+                <Button radius="md" className={classes.iconButton}>
+                  Join discussion
+                </Button>
+                <UpIconButton
+                  id={feature.id}
+                  vote={feature.vote}
+                  upVote={feature.upVote}
+                />
+                <DownIconButton
+                  id={feature.id}
+                  vote={feature.vote}
+                  upVote={feature.upVote}
+                />
+              </>
+            )}
+          </Group>
+        </Card>
+      </Link>
     </>
   );
 }

@@ -18,6 +18,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure, useLocalStorage } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons';
+import Link from 'next/link';
 
 import { UserCircle, FingerprintOff } from 'tabler-icons-react';
 import { useStylesNav } from './useStylesNav';
@@ -66,7 +67,7 @@ export default function Nav() {
   ));
 
   return (
-    <Box pb={120}>
+    <Box pb={50}>
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
           {/* TODO: PUT IR LOGO HERE */}
@@ -78,15 +79,9 @@ export default function Nav() {
               spacing={0}
               className={classes.hiddenMobile}
             >
-              <a href="#" className={classes.link}>
-                Home
-              </a>
-              <a href="#" className={classes.link}>
-                Learn
-              </a>
-              <a href="#" className={classes.link}>
-                Academy
-              </a>
+              <Link href="/">
+                <a className={classes.link}>Home</a>
+              </Link>
             </Group>
           )}
           {/* This is for mobile menu */}
