@@ -7,6 +7,7 @@ import {
   Checkbox,
   Textarea,
   createStyles,
+  Select,
 } from '@mantine/core';
 import { ArrowBigRight } from 'tabler-icons-react';
 import { useForm } from '@mantine/form';
@@ -20,6 +21,7 @@ export default function AddFeatureModal({ opened, setOpened }) {
     initialValues: {
       title: '',
       description: '',
+      status: '',
       visible: false,
       allowVoting: false,
     },
@@ -45,10 +47,9 @@ export default function AddFeatureModal({ opened, setOpened }) {
       ...appState.data,
       {
         id: appState.data.length + 1,
-        image:
-          'http://stratnor.com/wp-content/themes/stratnor/images/no-image.png',
-        titñe: values.title,
+        title: values.title,
         description: values.description,
+        image: '',
       },
     ];
     appState.setData(newArray);
@@ -74,6 +75,19 @@ export default function AddFeatureModal({ opened, setOpened }) {
           placeholder="Explain your new feature"
           required
           {...form.getInputProps('description')}
+        />
+        <Space h="xs" />
+        <Select
+          required
+          label="Status"
+          placeholder="Select status"
+          data={[
+            { label: 'Draft', value: 'draft' },
+            { label: 'Voting', value: 'voting' },
+            { label: 'In progress', value: 'in-progress' },
+            { label: 'Done', value: 'done' },
+          ]}
+          {...form.getInputProps('status')}
         />
         <Space h="xs" />
         <Checkbox

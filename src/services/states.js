@@ -35,6 +35,7 @@ const dataMockUp = [
       'El objetivo es implementar un Calendario de Cronohooks, una implementación propia que permita visualizar tu propio cronograma sin complicaciones, pero con un feature para implementar en entornos reales...',
     vote: true,
     upVote: true,
+    status: 'done',
   },
   {
     id: 2,
@@ -45,6 +46,7 @@ const dataMockUp = [
       'El objetivo es implementar un Calendario de Cronohooks, una implementación propia que permita visualizar tu propio cronograma sin complicaciones, pero con un feature para implementar en entornos reales...',
     vote: true,
     upVote: true,
+    status: 'voting',
   },
   {
     id: 3,
@@ -53,6 +55,10 @@ const dataMockUp = [
     title: 'Calendario de Crons',
     description:
       'El objetivo es implementar un Calendario de Cronohooks, una implementación propia que permita visualizar tu propio cronograma sin complicaciones, pero con un feature para implementar en entornos reales...',
+    status: 'in-progress',
+    status: 'in-progress',
+    vote: true,
+    upVote: true,
   },
   {
     id: 4,
