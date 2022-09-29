@@ -1,8 +1,8 @@
 import { ActionIcon, createStyles } from '@mantine/core';
 import AppState from '../../services/states';
-import { ArrowBigTop } from 'tabler-icons-react';
+import { ArrowBigTop, H1 } from 'tabler-icons-react';
 
-export function UpIconButton({ id, vote, upVote }) {
+export function UpIconButton({ id, vote, upVote, isRounded }) {
   const { classes } = useStyles();
   const appState = AppState.useContainer();
 
@@ -25,24 +25,46 @@ export function UpIconButton({ id, vote, upVote }) {
   };
 
   return (
-    <ActionIcon
-      variant="transparent"
-      radius="md"
-      sx={vote && upVote && { backgroundColor: '#2D8632' }}
-      size={35}
-      style={{
-        width: 40,
-        border: '1px solid #CED4DA',
-      }}
-      onClick={handleChangeVote}
-    >
-      <ArrowBigTop
-        size={35}
-        strokeWidth={1.5}
-        color={vote && upVote ? 'white' : '#2d8632'}
-        className={classes.icons}
-      />
-    </ActionIcon>
+    <>
+      {isRounded ? (
+        <ActionIcon
+          variant="transparent"
+          radius="xl"
+          sx={vote && upVote && { backgroundColor: '#2D8632' }}
+          size={90}
+          style={{
+            border: '1px solid #CED4DA',
+          }}
+          onClick={handleChangeVote}
+        >
+          <ArrowBigTop
+            size={80}
+            strokeWidth={1.5}
+            color={vote && upVote ? 'white' : '#2d8632'}
+            className={classes.icons}
+          />
+        </ActionIcon>
+      ) : (
+        <ActionIcon
+          variant="transparent"
+          radius="md"
+          sx={vote && upVote && { backgroundColor: '#2D8632' }}
+          size={35}
+          style={{
+            width: 40,
+            border: '1px solid #CED4DA',
+          }}
+          onClick={handleChangeVote}
+        >
+          <ArrowBigTop
+            size={35}
+            strokeWidth={1.5}
+            color={vote && upVote ? 'white' : '#2d8632'}
+            className={classes.icons}
+          />
+        </ActionIcon>
+      )}
+    </>
   );
 }
 

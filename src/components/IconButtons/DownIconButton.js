@@ -2,7 +2,7 @@ import { ActionIcon, createStyles } from '@mantine/core';
 import { ArrowBigDown } from 'tabler-icons-react';
 import AppState from '../../services/states';
 
-export function DownIconButton({ id, vote, upVote }) {
+export function DownIconButton({ id, vote, upVote, isRounded }) {
   const { classes } = useStyles();
   const appState = AppState.useContainer();
 
@@ -25,24 +25,47 @@ export function DownIconButton({ id, vote, upVote }) {
   };
 
   return (
-    <ActionIcon
-      variant="transparent"
-      radius="md"
-      size={35}
-      sx={vote && !upVote && { backgroundColor: '#FF4747' }}
-      style={{
-        width: 40,
-        border: '1px solid #CED4DA',
-      }}
-      onClick={handleChangeVote}
-    >
-      <ArrowBigDown
-        size={35}
-        strokeWidth={1.5}
-        color={vote && !upVote ? 'white' : '#FF4747'}
-        className={classes.icons}
-      />
-    </ActionIcon>
+    <>
+      {isRounded ? (
+        <ActionIcon
+          variant="transparent"
+          radius="xl"
+          size={90}
+          sx={vote && !upVote && { backgroundColor: '#FF4747' }}
+          style={{
+            width: 40,
+            border: '1px solid #CED4DA',
+          }}
+          onClick={handleChangeVote}
+        >
+          <ArrowBigDown
+            size={80}
+            strokeWidth={1.5}
+            color={vote && !upVote ? 'white' : '#FF4747'}
+            className={classes.icons}
+          />
+        </ActionIcon>
+      ) : (
+        <ActionIcon
+          variant="transparent"
+          radius="md"
+          size={35}
+          sx={vote && !upVote && { backgroundColor: '#FF4747' }}
+          style={{
+            width: 40,
+            border: '1px solid #CED4DA',
+          }}
+          onClick={handleChangeVote}
+        >
+          <ArrowBigDown
+            size={35}
+            strokeWidth={1.5}
+            color={vote && !upVote ? 'white' : '#FF4747'}
+            className={classes.icons}
+          />
+        </ActionIcon>
+      )}
+    </>
   );
 }
 

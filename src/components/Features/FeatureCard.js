@@ -1,32 +1,39 @@
 import { Card, Image, Text, Group, Button, createStyles } from '@mantine/core';
+import { useState } from 'react';
 import { Edit, Trash } from 'tabler-icons-react';
 import { ActionIconButton } from '../IconButtons/ActionIconButton';
 import { DownIconButton } from '../IconButtons/DownIconButton';
 import { UpIconButton } from '../IconButtons/UpIconButton';
+import { ShowFeature } from './ShowFeature';
 
-export function FeatureCard({ id, image, title, description, vote, upVote }) {
+export function FeatureCard({ feature }) {
   const { classes } = useStyles();
+  const [openShowFeatureModal, setOpenShowFeatureModal] = useState(false);
 
   return (
     <>
       <Card withBorder radius="md" p="md" className={classes.card}>
         <Card.Section>
-          <Image src={image} alt={title} height={150} />
+          <Image src={feature.image} alt={feature.title} height={150} />
         </Card.Section>
 
         <Card.Section mt="md" className={classes.section}>
           <Group position="apart">
             <Text size="lg" weight={500}>
-              {title}
+              {feature.title}
             </Text>
           </Group>
           <Text size="sm" mt="xs">
-            {description.substring(0, 170) + '...'}
+            {feature.description.substring(0, 170) + '...'}
           </Text>
         </Card.Section>
 
         <Group mt="xs">
-          <Button radius="md" className={classes.iconButton}>
+          <Button
+            radius="md"
+            className={classes.iconButton}
+            onClick={() => setOpenShowFeatureModal(true)}
+          >
             Join discussion
           </Button>
           {false ? (
@@ -47,12 +54,25 @@ export function FeatureCard({ id, image, title, description, vote, upVote }) {
           ) : (
             // If user is Pusher
             <>
-              <UpIconButton id={id} vote={vote} upVote={upVote} />
-              <DownIconButton id={id} vote={vote} upVote={upVote} />
+              <UpIconButton
+                id={feature.id}
+                vote={feature.vote}
+                upVote={feature.upVote}
+              />
+              <DownIconButton
+                id={feature.id}
+                vote={feature.vote}
+                upVote={feature.upVote}
+              />
             </>
           )}
         </Group>
       </Card>
+      <ShowFeature
+        open={openShowFeatureModal}
+        setOpen={setOpenShowFeatureModal}
+        feature={feature}
+      />
     </>
   );
 }
