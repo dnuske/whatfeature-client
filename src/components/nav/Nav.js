@@ -71,19 +71,23 @@ export default function Nav() {
       <Header height={60} px="md">
         <Group position="apart" sx={{ height: '100%' }}>
           {/* TODO: PUT IR LOGO HERE */}
-          LOGO HERE
+          <Link href="/">
+            <a className={classes.link}>LOGO HERE</a>
+          </Link>
           {/* TODO: HERE PUT UR's ROUTES */}
-          {accessToken && (
+
+          {/* I COMMENT THIS BECOUSE WE ONLY HAVE HOME LINK  */}
+          {/* {accessToken && (
             <Group
               sx={{ height: '100%' }}
               spacing={0}
               className={classes.hiddenMobile}
             >
-              <Link href="/">
+             
                 <a className={classes.link}>Home</a>
-              </Link>
+              
             </Group>
-          )}
+          )} */}
           {/* This is for mobile menu */}
           <Burger
             opened={drawerOpened}

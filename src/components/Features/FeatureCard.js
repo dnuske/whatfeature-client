@@ -61,7 +61,7 @@ export function FeatureCard({ feature }) {
           </Card.Section>
 
           <Group mt="xs">
-            {true ? (
+            {false ? (
               // If user is Founder
               <div
                 style={{

@@ -12,7 +12,7 @@ export function AddFeatureCard() {
   const [openedRecommend, setOpenedRecommend] = useState(false);
 
   // ONLY FOR TEST, REMOVE THIS LATER
-  const [isAdmin, setisAdmin] = useState(true);
+  const [isAdmin, setisAdmin] = useState(false);
 
   const handleAddFeature = () => {
     setOpenedCreate(true);
